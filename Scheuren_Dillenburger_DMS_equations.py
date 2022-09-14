@@ -13,6 +13,7 @@ import pandas as pd
 from tabulate import tabulate
 from matplotlib import pyplot as plt
 
+
 # RK-4 method python program
 # from codesansar.com
 
@@ -22,7 +23,7 @@ def f(x, y):
 
 
 # or
-# f = lambda x: x+y
+# f = lambda x: y - x
 
 # RK-4 method
 def rk4(x0, y0, h, n):
@@ -33,7 +34,7 @@ def rk4(x0, y0, h, n):
     # xn = n * h
     yn = y0
     data = {x0: yn}
-    n = n+1
+    n = n + 1
     headers = ["xn", "yn"]
 
     for i in range(n):
@@ -47,9 +48,10 @@ def rk4(x0, y0, h, n):
         yn = yn + k
 
     print(pd.DataFrame(data.items(), columns=headers))
+    return data
+
 
 if __name__ == "__main__":
-
     # Inputs
     print('Enter initial conditions:')
     x0 = float(input('x0 = '))
@@ -62,5 +64,18 @@ if __name__ == "__main__":
     step = int(input('Number of steps = '))
 
     # RK4 method call
-    rk4(x0, y0, h, step)
+    data = rk4(x0, y0, h, step)
+
+    x = data.keys()
+    y = data.values()
+
+    # matplotlib example
+    # x = np.linspace(0, 2 * np.pi, 200)
+    # y = np.sin(x)
+
+    fig, ax = plt.subplots()
+    ax.plot(x, y)
+    plt.show()
+
+
 
