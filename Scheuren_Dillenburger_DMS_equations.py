@@ -18,12 +18,35 @@ from matplotlib import pyplot as plt
 # from codesansar.com
 
 # function to be solved
-def f(x, y):
-    return y - x
-
+# Example problem
+# def f(x, y):
+#     return y - x
 
 # or
 # f = lambda x: y - x
+
+def c_i(c0, k, t0, tn, h):
+    """
+    Equation 1 Dillenburger (2017)
+    An exponential decay equation that calculates the DMSP content
+    at a certain time of the evaporation process.
+    :param c0:  DMSP content at start of time span
+    :param k:   Rate constant
+    :param t0:  Start of time span
+    :param tn:  End of time span
+    :param h:   Time step
+    :return:    DMSP content at end of time span
+    """
+
+    return
+
+
+# Equation 4 Dillenburger (2017)
+def f(x, y):
+
+    return
+
+
 
 # RK-4 method
 def rk4(x0, y0, h, n):
