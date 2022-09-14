@@ -47,8 +47,9 @@ def rk4(x0, y0, h, n):
         data[xn] = yn
         yn = yn + k
 
-    print(pd.DataFrame(data.items(), columns=headers))
-    return data
+    df = pd.DataFrame(data.items(), columns=headers)
+    print(df)
+    return df
 
 
 if __name__ == "__main__":
@@ -65,9 +66,12 @@ if __name__ == "__main__":
 
     # RK4 method call
     data = rk4(x0, y0, h, step)
+    # print(data.to_numpy()[0][0])
+    # print(data["xn"])
+    # print(data["yn"])
 
-    x = data.keys()
-    y = data.values()
+    x = data["xn"]
+    y = data["yn"]
 
     # matplotlib example
     # x = np.linspace(0, 2 * np.pi, 200)
