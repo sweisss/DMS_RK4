@@ -8,6 +8,7 @@ https://www.geeksforgeeks.org/runge-kutta-4th-order-method-solve-differential-eq
 This program also used the code from the following link as a starting point:
 https://www.codesansar.com/numerical-methods/runge-kutta-fourth-order-rk4-python-program.htm
 """
+import math
 import numpy as np
 import pandas as pd
 from tabulate import tabulate
@@ -37,8 +38,10 @@ def c_i(c0, k, t0, tn, h):
     :param h:   Time step
     :return:    DMSP content at end of time span
     """
-
-    return
+    c = []
+    for i in range(t0, tn+h, h):
+        c.append(c0 * math.exp(-k*i))
+    return c
 
 
 # Equation 4 Dillenburger (2017)
@@ -76,30 +79,21 @@ def rk4(x0, y0, h, n):
 
 
 if __name__ == "__main__":
-    # Inputs
+    # Inputs -- fix this so that it doesn't crash when NAN is entered
     print('Enter initial conditions:')
     x0 = float(input('x0 = '))
     y0 = float(input('y0 = '))
-
     print('Enter step size: ')
     h = float(input('h = '))
-
     print('Enter number of steps:')
     step = int(input('Number of steps = '))
 
     # RK4 method call
     data = rk4(x0, y0, h, step)
-    # print(data.to_numpy()[0][0])
-    # print(data["xn"])
-    # print(data["yn"])
-
     x = data["xn"]
     y = data["yn"]
 
-    # matplotlib example
-    # x = np.linspace(0, 2 * np.pi, 200)
-    # y = np.sin(x)
-
+    # plot the data
     fig, ax = plt.subplots()
     ax.plot(x, y)
     plt.show()
