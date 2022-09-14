@@ -45,8 +45,21 @@ def c_i(c0, k, t0, tn, h):
 
 
 # Equation 4 Dillenburger (2017)
-def f(t, x):
-    return x - t
+def f(D_dot, L0, Ki, xi, ci, k, t):
+    """
+    Equation 4 from Dillenburger (2017) calculates 'the boiling of wort in a kettle through direct
+    heating of tank walls in terms of the evaporation of DMS in water and teh simultaneous reproduction
+    of DMSP'
+    :param D_dot:   Steam flow (a constant or a variable?)
+    :param L0:      Wort volume at point t0 (most likely a constant)
+    :param Ki:      Volatility of component i (DMS) (most likely a constant)
+    :param xi:      Dimethyl sulphide content
+    :param ci:      Precursor content of component i (DMSP)
+    :param k:       Rate constant 1/s
+    :param t:       time
+    :return:        DMS content after a certain duration of wort boiling
+    """
+    return
 
 
 
