@@ -44,6 +44,22 @@ def c_i(c0, k, t0, tn, h):
         c.append(c0 * math.exp(-k*i))
     return c
 
+def dc_i(c0, k, t0, tn, h):
+    """
+    An alternative form of eq. 1 from Dillenburger (2017), presented as eq. 10 in Scheuren (2014).
+    The right side of these two equations are equivelant. The difference is that the left side is now explicitly a
+    differential equation that can be evaluated using the RK4 method.
+    TODO make sure the parameters line up correctly with the paper.
+    TODO implement this function in a way that it can be evaluated by the RK4 method.
+    :param c0:
+    :param k:
+    :param t0:
+    :param tn:
+    :param h:
+    :return:
+    """
+    pass
+
 
 # Equation 4 Dillenburger (2017)
 def f4(D_dot, L0, Ki, xi, ci, k, t):
@@ -67,7 +83,7 @@ def f4(D_dot, L0, Ki, xi, ci, k, t):
 # RK-4 method
 def rk4(f, t0, x0, h, n):
     """
-    The parameters of this RK4 method have been altered to reflect those in the Scheuren/Dillenberger papers.
+    The parameters of this RK4 method have been altered to reflect those in the Scheuren/Dillenburger papers.
     :param f: The function to be analyzed with teh RK4 method.
     :param t0: Initial time for t in the form dx/dt. This corresponds to x in the form dy/dx.
     :param x0: Initial value of x in the form dx/dt. This corresponds to y in the form dy/dx.
@@ -96,7 +112,8 @@ def rk4(f, t0, x0, h, n):
 
 
 if __name__ == "__main__":
-    # Inputs -- fix this so that it doesn't crash when NAN is entered
+    # Inputs
+    # TODO fix this so that it doesn't crash when NAN is entered
     print('Enter initial conditions:')
     t0 = float(input('t0 = '))
     x0 = float(input('x0 = '))
