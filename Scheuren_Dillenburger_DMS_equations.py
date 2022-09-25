@@ -41,24 +41,23 @@ def c_i(c0, k, t0, tn, h):
     """
     c = []
     for i in range(t0, tn+h, h):
-        c.append(c0 * math.exp(-k*i))
+        c.append(c0 * math.exp(-k * i))
     return c
 
-def dc_i(c0, k, t0, tn, h):
+
+def dc_i(c_i, t, k):
     """
     An alternative form of eq. 1 from Dillenburger (2017), presented as eq. 10 in Scheuren (2014).
     The right side of these two equations are equivelant. The difference is that the left side is now explicitly a
     differential equation that can be evaluated using the RK4 method.
     TODO make sure the parameters line up correctly with the paper.
     TODO implement this function in a way that it can be evaluated by the RK4 method.
-    :param c0:
-    :param k:
-    :param t0:
-    :param tn:
-    :param h:
-    :return:
+    :param c_i: DMSP content
+    :param t: Time
+    :param k: Rate constant for chemical reaction.
+    :return: DMSP content after a period of time in the boil.
     """
-    pass
+    return k * c_i * math.exp(-k * t)
 
 
 # Equation 4 Dillenburger (2017)
@@ -121,6 +120,8 @@ if __name__ == "__main__":
     h = float(input('h = '))
     print('Enter number of steps:')
     step = int(input('Number of steps = '))
+
+
 
     # RK4 method call
     data = rk4(f_example, t0, x0, h, step)
