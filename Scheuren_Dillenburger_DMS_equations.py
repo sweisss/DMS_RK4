@@ -9,6 +9,7 @@ This program also used the code from the following link as a starting point:
 https://www.codesansar.com/numerical-methods/runge-kutta-fourth-order-rk4-python-program.htm
 """
 import math
+
 import numpy as np
 import pandas as pd
 from tabulate import tabulate
@@ -20,8 +21,8 @@ from matplotlib import pyplot as plt
 
 # function to be solved
 # Example problem
-# def f(x, y):
-#     return y - x
+def f_example(x, y):
+    return y - x
 
 # or
 # f = lambda x: y - x
@@ -29,8 +30,8 @@ from matplotlib import pyplot as plt
 def c_i(c0, k, t0, tn, h):
     """
     Equation 1 Dillenburger (2017)
-    An exponential decay equation that calculates the DMSP content
-    at a certain time of the evaporation process.
+    An exponential decay equation that calculates the cleavage of DMSP and
+    formation of DMS at a certain time of the boil. 
     :param c0:  DMSP content at start of time span
     :param k:   Rate constant
     :param t0:  Start of time span
@@ -45,7 +46,7 @@ def c_i(c0, k, t0, tn, h):
 
 
 # Equation 4 Dillenburger (2017)
-def f(D_dot, L0, Ki, xi, ci, k, t):
+def f4(D_dot, L0, Ki, xi, ci, k, t):
     """
     Equation 4 from Dillenburger (2017) calculates 'the boiling of wort in a kettle through direct
     heating of tank walls in terms of the evaporation of DMS in water and teh simultaneous reproduction
@@ -57,19 +58,23 @@ def f(D_dot, L0, Ki, xi, ci, k, t):
     :param ci:      Precursor content of component i (DMSP)
     :param k:       Rate constant 1/s
     :param t:       time
-    :return:        DMS content after a certain duration of wort boiling
+    :return:        The change in DMS content dependent on a process time
     """
     return
 
 
 
 # RK-4 method
-def rk4(t0, x0, h, n):
-    # Calculating step size
-    # h = (xn - x0) / n
-
-    # Calculate initial conditions
-    # xn = n * h
+def rk4(f, t0, x0, h, n):
+    """
+    The parameters of this RK4 method have been altered to reflect those in the Scheuren/Dillenberger papers.
+    :param f: The function to be analyzed with teh RK4 method.
+    :param t0: Initial time for t in the form dx/dt. This corresponds to x in the form dy/dx.
+    :param x0: Initial value of x in the form dx/dt. This corresponds to y in the form dy/dx.
+    :param h: The time step for each iteration of the RK4 method.
+    :param n: The total number of steps in the analysis.
+    :return: A dataframe object containing the values of t and x at each step of the RK4 analysis for the duration of n.
+    """
     xn = x0
     data = {t0: xn}
     n = n + 1
@@ -101,7 +106,7 @@ if __name__ == "__main__":
     step = int(input('Number of steps = '))
 
     # RK4 method call
-    data = rk4(t0, x0, h, step)
+    data = rk4(f_example, t0, x0, h, step)
     t = data["tn"]
     x = data["xn"]
 
