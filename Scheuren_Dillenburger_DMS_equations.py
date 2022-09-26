@@ -45,19 +45,19 @@ def c_i(c0, k, t0, tn, h):
     return c
 
 
-def dc_i(t, c_i0=227, k=0.00025):
+def dc_i(t, c_i0, k=0.00025):
     """
     An alternative form of eq. 1 from Dillenburger (2017), presented as eq. 10 in Scheuren (2014).
     The right side of these two equations are equivelant. The difference is that the left side is now explicitly a
     differential equation that can be evaluated using the RK4 method.
     TODO make sure the parameters line up correctly with the paper.
-    TODO implement this function in a way that it can be evaluated by the RK4 method.
+    TODO Review implementation of higher order functions. What values are being passed for t and c_i?
     :param c_i: DMSP content
     :param t: Time
     :param k: Rate constant for chemical reaction.
     :return: DMSP content after a period of time in the boil.
     """
-    return k * c_i0 * math.exp(-k * t)   # c_i is probably changing in each step, and it probably shouldn't for the eqn to be correct.
+    return k * c_i0 * math.exp(-k * t)
 
 
 # Equation 4 Dillenburger (2017)
