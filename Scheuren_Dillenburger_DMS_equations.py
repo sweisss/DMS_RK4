@@ -45,7 +45,7 @@ def c_i(c0, k, t0, tn, h):
     return c
 
 
-def dc_i(c_i, t, k):
+def dc_i(t, c_i0=227, k=0.00025):
     """
     An alternative form of eq. 1 from Dillenburger (2017), presented as eq. 10 in Scheuren (2014).
     The right side of these two equations are equivelant. The difference is that the left side is now explicitly a
@@ -57,7 +57,7 @@ def dc_i(c_i, t, k):
     :param k: Rate constant for chemical reaction.
     :return: DMSP content after a period of time in the boil.
     """
-    return k * c_i * math.exp(-k * t)
+    return k * c_i0 * math.exp(-k * t)   # c_i is probably changing in each step, and it probably shouldn't for the eqn to be correct.
 
 
 # Equation 4 Dillenburger (2017)
@@ -121,16 +121,20 @@ if __name__ == "__main__":
     print('Enter number of steps:')
     step = int(input('Number of steps = '))
 
-
-
-    # RK4 method call
-    data = rk4(f_example, t0, x0, h, step)
+    # RK4 method call dc_i
+    data = rk4(dc_i, t0, x0, h, step)
     t = data["tn"]
     x = data["xn"]
 
+    # RK4 method call example function
+    # data = rk4(f_example, t0, x0, h, step)
+    # t = data["tn"]
+    # x = data["xn"]
+
     # plot the data
-    fig, ax = plt.subplots()
-    ax.plot(t, x)
+    plt.plot(t, x)
+    plt.xlabel("t (in seconds)")
+    plt.ylabel("x")
     plt.show()
 
 
