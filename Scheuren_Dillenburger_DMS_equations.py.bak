@@ -10,8 +10,9 @@ https://www.codesansar.com/numerical-methods/runge-kutta-fourth-order-rk4-python
 """
 import math
 
-# import numpy as np
+import numpy as np
 import pandas as pd
+# from tabulate import tabulate
 from matplotlib import pyplot as plt
 
 
