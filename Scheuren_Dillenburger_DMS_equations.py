@@ -50,6 +50,7 @@ def rk4(f, t0, x0, h, n):
     :param h: The time step for each iteration of the RK4 method.
     :param n: The total number of steps in the analysis.
     :return: A dataframe object containing the values of t and x at each step of the RK4 analysis for the duration of n.
+    TODO pull the df part out of this and just return the dictionary. The df part should be a separate function.
     """
     xn = x0
     data = {t0: xn}
