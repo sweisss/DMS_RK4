@@ -9,6 +9,7 @@ This program also used the code from the following link as a starting point:
 https://www.codesansar.com/numerical-methods/runge-kutta-fourth-order-rk4-python-program.htm
 """
 import math
+import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
@@ -20,7 +21,7 @@ def f_example(x, y):
 
 
 # Equation 4 Dillenburger (2017)
-def f4(x_i, t):
+def f4(t, x_i):
     """
     Equation 4 from Dillenburger (2017) calculates 'the boiling of wort in a kettle through direct
     heating of tank walls in terms of the evaporation of DMS in water and teh simultaneous reproduction
@@ -34,7 +35,7 @@ def f4(x_i, t):
     L_0 = 73200     # Initial wort volume (boil start)
     K_i = 78        # Volatility
     k = 0.00025     # Rate constant
-    c_i0 = 227      # Dimethyl suphide precursor (DMSP) in micrograms/L
+    c_i0 = 227      # Dimethyl sulphide precursor (DMSP) in micrograms/L
 
     return -(D_dot/L_0) * (K_i * x_i - x_i - c_i0) + k * c_i0 * math.exp(-k * t)
 
@@ -92,6 +93,7 @@ if __name__ == "__main__":
     # x = data["xn"]
 
     ###### plot the data #####
+    plt.axhline(y=100, color='red')
     plt.plot(t, x)
     plt.xlabel("t (in seconds)")
     plt.ylabel("x")
