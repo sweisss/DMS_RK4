@@ -83,6 +83,12 @@ if __name__ == "__main__":
     print('Enter number of steps:')
     step = int(input('Number of steps = '))
 
+    # Note: When modeling eqn 4, input the following:
+    # t0 = 0 (Start time)
+    # x0 = 273 (DMS content)
+    # h = 1 (Step size of 1 second)
+    # Number of Steps = 3600 (3600 seconds is 1 hr)
+
     ###### RK4 method call f4 ######
     data = rk4(f4, t0, x0, h, step)
     t = data["tn"]
