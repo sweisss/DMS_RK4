@@ -74,14 +74,10 @@ def rk4(f, t0, x0, h, n):
 
 if __name__ == "__main__":
     # Inputs
-    # TODO fix this so that it doesn't crash when NAN is entered
-    print('Enter initial conditions:')
-    t0 = float(input('t0 = '))
-    x0 = float(input('x0 = '))
-    print('Enter step size: ')
-    h = float(input('h = '))
-    print('Enter number of steps:')
-    step = int(input('Number of steps = '))
+    t0 = 0
+    x0 = 273
+    h = 1
+    steps = 3600
 
     # Note: When modeling eqn 4, input the following:
     # t0 = 0 (Start time)
@@ -90,12 +86,12 @@ if __name__ == "__main__":
     # Number of Steps = 3600 (3600 seconds is 1 hr)
 
     ###### RK4 method call f4 ######
-    data = rk4(f4, t0, x0, h, step)
+    data = rk4(f4, t0, x0, h, steps)
     t = data["tn"]
     x = data["xn"]
 
     ###### RK4 method call example function ######
-    # data = rk4(f_example, t0, x0, h, step)
+    # data = rk4(f_example, t0, x0, h, steps)
     # t = data["tn"]
     # x = data["xn"]
 
