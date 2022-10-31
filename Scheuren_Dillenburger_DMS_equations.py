@@ -21,7 +21,7 @@ def f_example(x, y):
 
 
 # Equation 4 Dillenburger (2017)
-def f4(t, x_i):
+def eqn_4(t, x_i):
     """
     Equation 4 from Dillenburger (2017) calculates 'the boiling of wort in a kettle through direct
     heating of tank walls in terms of the evaporation of DMS in water and teh simultaneous reproduction
@@ -86,7 +86,7 @@ if __name__ == "__main__":
     # Number of Steps = 3600 (3600 seconds is 1 hr)
 
     ###### RK4 method call f4 ######
-    data = rk4(f4, t0, x0, h, steps)
+    data = rk4(eqn_4, t0, x0, h, steps)
     t = data["tn"]
     x = data["xn"]
 
