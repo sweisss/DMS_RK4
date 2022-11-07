@@ -8,6 +8,7 @@ https://www.geeksforgeeks.org/runge-kutta-4th-order-method-solve-differential-eq
 This program also used the code from the following link as a starting point:
 https://www.codesansar.com/numerical-methods/runge-kutta-fourth-order-rk4-python-program.htm
 """
+from cmath import exp
 import math
 import numpy as np
 import pandas as pd
@@ -19,6 +20,20 @@ from matplotlib import pyplot as plt
 def f_example(x, y):
     return y - x
 
+
+# Equation 1 from Scheuren (2014) Thermodynamic Validation of Wort Boiling Systems
+def eqn_1(c_i_0, k, t, step):
+    """
+    Calculation of the cleavage of DMSP and formation of DMS
+    Paper describes it as a differential equation but it does not resemble one:
+    c_i,1 = c_i,0 * e **(-k * t_1)
+    """
+    c_i = []
+    for i in range(0, t + step, step):
+        c_i.append(c_i_0 * math.exp(-k * 60 * i))
+    
+    return c_i
+    
 
 # Equation 4 Dillenburger (2017)
 def eqn_4(t, x_i):
@@ -73,6 +88,15 @@ def rk4(f, t0, x0, h, n):
 
 
 if __name__ == "__main__":
+
+
+    # For eqn 1
+    c_i_0 = 500
+    k = 0.00130809768004509
+    c_i = eqn_1(c_i_0, k, 60, 5)
+    print(c_i)
+
+    # For RK4
     # Inputs
     t0 = 0
     x0 = 273
@@ -86,18 +110,18 @@ if __name__ == "__main__":
     # Number of Steps = 3600 (3600 seconds is 1 hr)
 
     ###### RK4 method call f4 ######
-    data = rk4(eqn_4, t0, x0, h, steps)
-    t = data["tn"]
-    x = data["xn"]
-
-    ###### RK4 method call example function ######
-    # data = rk4(f_example, t0, x0, h, steps)
+    # data = rk4(eqn_4, t0, x0, h, steps)
     # t = data["tn"]
     # x = data["xn"]
 
-    ###### plot the data #####
-    plt.axhline(y=100, color='red')
-    plt.plot(t, x)
-    plt.xlabel("t (in seconds)")
-    plt.ylabel("x")
-    plt.show()
+    # ###### RK4 method call example function ######
+    # # data = rk4(f_example, t0, x0, h, steps)
+    # # t = data["tn"]
+    # # x = data["xn"]
+
+    # ###### plot the data #####
+    # plt.axhline(y=100, color='red')
+    # plt.plot(t, x)
+    # plt.xlabel("t (in seconds)")
+    # plt.ylabel("x")
+    # plt.show()
