@@ -27,6 +27,9 @@ def eqn_1(c_i_0, k, t, step):
     Calculation of the cleavage of DMSP and formation of DMS
     Paper describes it as a differential equation but it does not resemble one:
     c_i,1 = c_i,0 * e **(-k * t_1)
+    Note 1: Scheuren uses 2.71 for e in the Excel file he gave me,
+        This returns slightly different values than when using math.exp()
+    Note 2: I'm not sure exactly why the 60 is in there. Could it refer to t_total?
     """
     c_i = []
     for i in range(0, t + step, step):
@@ -99,7 +102,7 @@ if __name__ == "__main__":
     # For RK4
     # Inputs
     t0 = 0
-    x0 = 273
+    x0 = 500
     h = 1
     steps = 3600
 
@@ -109,19 +112,19 @@ if __name__ == "__main__":
     # h = 1 (Step size of 1 second)
     # Number of Steps = 3600 (3600 seconds is 1 hr)
 
-    ###### RK4 method call f4 ######
-    # data = rk4(eqn_4, t0, x0, h, steps)
+    ##### RK4 method call f4 ######
+    data = rk4(eqn_4, t0, x0, h, steps)
+    t = data["tn"]
+    x = data["xn"]
+
+    ###### RK4 method call example function ######
+    # data = rk4(f_example, t0, x0, h, steps)
     # t = data["tn"]
     # x = data["xn"]
 
-    # ###### RK4 method call example function ######
-    # # data = rk4(f_example, t0, x0, h, steps)
-    # # t = data["tn"]
-    # # x = data["xn"]
-
-    # ###### plot the data #####
-    # plt.axhline(y=100, color='red')
-    # plt.plot(t, x)
-    # plt.xlabel("t (in seconds)")
-    # plt.ylabel("x")
-    # plt.show()
+    ###### plot the data #####
+    plt.axhline(y=100, color='red')
+    plt.plot(t, x)
+    plt.xlabel("t (in seconds)")
+    plt.ylabel("x")
+    plt.show()
