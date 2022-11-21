@@ -30,6 +30,7 @@ def eqn_1(c_i_0, k, t, step):
     Note 1: Scheuren uses 2.71 for e in the Excel file he gave me,
         This returns slightly different values than when using math.exp()
     Note 2: I'm not sure exactly why the 60 is in there. Could it refer to t_total?
+        The 60 is to convert an input time of minutes to seconds
     """
     c_i = []
     for i in range(0, t + step, step):
@@ -50,7 +51,7 @@ def eqn_4(t, x_i):
     :return:        The change in DMS content dependent on a process time
     """
     D_dot = 1.1     # Steam flow in L/s
-    L_0 = 73200     # Initial wort volume (boil start)
+    L_0 = 1 # 73200     # Initial wort volume (boil start)
     K_i = 78        # Volatility
     k = 0.00025     # Rate constant
     c_i0 = 227      # Dimethyl sulphide precursor (DMSP) in micrograms/L
@@ -94,8 +95,8 @@ if __name__ == "__main__":
 
 
     # For eqn 1
-    c_i_0 = 500
-    k = 0.00130809768004509
+    c_i_0 = 500    # From Scheuren's Excel 
+    k = 0.00130809768004509     # From Scheuren's Excel
     c_i = eqn_1(c_i_0, k, 60, 5)
     print(c_i)
 
