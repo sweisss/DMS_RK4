@@ -51,10 +51,10 @@ def eqn_4(t, x_i):
     :return:        The change in DMS content dependent on a process time
     """
     D_dot = 1.1     # Steam flow in L/s
-    L_0 = 1 # 73200     # Initial wort volume (boil start)
-    K_i = 78        # Volatility
-    k = 0.00025     # Rate constant
-    c_i0 = 227      # Dimethyl sulphide precursor (DMSP) in micrograms/L
+    L_0 = 73200     # Initial wort volume (boil start)
+    K_i = 76        # Volatility
+    k = 0.00130809768004509     # Rate constant
+    c_i0 = 500      # Dimethyl sulphide precursor (DMSP) in micrograms/L
 
     return -(D_dot/L_0) * (K_i * x_i - x_i - c_i0) + k * c_i0 * math.exp(-k * t)
 
