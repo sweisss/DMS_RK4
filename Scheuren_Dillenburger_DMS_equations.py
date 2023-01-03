@@ -18,6 +18,9 @@ from matplotlib import pyplot as plt
 ###### Function to be solved ######
 # Example problem
 def f_example(x, y):
+    """
+    A simple example problem to confirm that the RK4 method is working correctly.
+    """
     return y - x
 
 
@@ -26,11 +29,10 @@ def eqn_1(c_i_0, k, t, step):
     """
     Calculation of the cleavage of DMSP and formation of DMS
     Paper describes it as a differential equation but it does not resemble one:
-    c_i,1 = c_i,0 * e **(-k * t_1)
+    c_i,1 = c_i,0 * e**(-k * t_1)
     Note 1: Scheuren uses 2.71 for e in the Excel file he gave me,
         This returns slightly different values than when using math.exp()
-    Note 2: I'm not sure exactly why the 60 is in there. Could it refer to t_total?
-        The 60 is to convert an input time of minutes to seconds
+    Note 2: The 60 is to convert an input time of minutes to seconds
     """
     c_i = []
     for i in range(0, t + step, step):
@@ -46,9 +48,9 @@ def eqn_4(t, x_i):
     heating of tank walls in terms of the evaporation of DMS in water and teh simultaneous reproduction
     of DMSP'
     Local variables go against python convention to keep them consistent with the equation in the paper.
-    :param x_i:      Dimethyl sulphide content
-    :param t:       time
-    :return:        The change in DMS content dependent on a process time
+    :param x_i: Dimethyl sulphide content
+    :param t:   time
+    :return:    The change in DMS content dependent on a process time
     """
     D_dot = 1.1     # Steam flow in L/s
     L_0 = 73200     # Initial wort volume (boil start)
@@ -87,7 +89,6 @@ def rk4(f, t0, x0, h, n):
         xn = xn + k
 
     df = pd.DataFrame(data.items(), columns=headers)
-    print(df)
     return df
 
 
@@ -98,7 +99,7 @@ if __name__ == "__main__":
     c_i_0 = 500    # From Scheuren's Excel 
     k = 0.00130809768004509     # From Scheuren's Excel
     c_i = eqn_1(c_i_0, k, 60, 5)
-    print(c_i)
+    print('c_i:\n', c_i)
 
     # For RK4
     # Inputs
@@ -115,6 +116,7 @@ if __name__ == "__main__":
 
     ##### RK4 method call f4 ######
     data = rk4(eqn_4, t0, x0, h, steps)
+    print("\nRK4 DataFrame: \n", data)
     t = data["tn"]
     x = data["xn"]
 
@@ -127,5 +129,5 @@ if __name__ == "__main__":
     plt.axhline(y=100, color='red')
     plt.plot(t, x)
     plt.xlabel("t (in seconds)")
-    plt.ylabel("x")
+    plt.ylabel("DMS Content (x) in ug/l")
     plt.show()
