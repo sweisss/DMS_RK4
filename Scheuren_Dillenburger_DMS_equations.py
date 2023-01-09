@@ -24,15 +24,24 @@ def f_example(x, y):
     return y - x
 
 
-# Equation 1 from Scheuren (2014) Thermodynamic Validation of Wort Boiling Systems
 def eqn_1(c_i_0, k, t, step):
     """
+    Equation 1 from Scheuren (2014) Thermodynamic Validation of Wort Boiling Systems.
+
     Calculation of the cleavage of DMSP and formation of DMS
     Paper describes it as a differential equation but it does not resemble one:
     c_i,1 = c_i,0 * e**(-k * t_1)
+
     Note 1: Scheuren uses 2.71 for e in the Excel file he gave me,
         This returns slightly different values than when using math.exp()
+
     Note 2: The 60 is to convert an input time of minutes to seconds
+
+    :param c_i_0: Initial DMSP content.
+    :param k: Rate constant.
+    :param t: Given instant in time.
+    :param step: Time interval for each calculation.
+    :return: List with DMSP concentration for each time step in the given range. 
     """
     c_i = []
     for i in range(0, t + step, step):
@@ -52,8 +61,8 @@ def eqn_13(t, x_i):
     
     Local variables go against python convention to keep them consistent with the variables used in the papers.
     :param x_i: Dimethyl sulphide content
-    :param t:   time
-    :return:    The change in DMS content dependent on a process time
+    :param t: time
+    :return: The change in DMS content dependent on a process time
     """
     D_dot = 1.1     # Steam flow in L/s
     L_0 = 73200     # Initial wort volume (boil start)
@@ -68,6 +77,7 @@ def eqn_13(t, x_i):
 def rk4(f, t0, x0, h, n):
     """
     The parameters of this RK4 method have been altered to reflect those in the Scheuren/Dillenburger papers.
+
     :param f: The function to be analyzed with teh RK4 method.
     :param t0: Initial time for t in the form dx/dt. This corresponds to x in the form dy/dx.
     :param x0: Initial value of x in the form dx/dt. This corresponds to y in the form dy/dx.
