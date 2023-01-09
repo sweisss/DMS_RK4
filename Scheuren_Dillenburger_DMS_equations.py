@@ -35,7 +35,8 @@ def eqn_1(c_i_0, k, t, step):
     Note 1: Scheuren uses 2.71 for e in the Excel file he gave me,
         This returns slightly different values than when using math.exp()
 
-    Note 2: The 60 is to convert an input time of minutes to seconds
+    Note 2: The 60 is to convert an input time of minutes to seconds.
+        This does not appear in the paper, but is included in the Excel document from Scheuren. 
 
     :param c_i_0: Initial DMSP content.
     :param k: Rate constant.
@@ -50,7 +51,6 @@ def eqn_1(c_i_0, k, t, step):
     return c_i
     
 
-# Equation 4 Dillenburger (2017)
 def eqn_13(t, x_i):
     """
     Equation 13 from Scheuren (2014) Thermodynamic Validation of Wort Boiling Systems.
@@ -73,18 +73,17 @@ def eqn_13(t, x_i):
     return -(D_dot/L_0) * (K_i * x_i - x_i - c_i0) + k * c_i0 * math.exp(-k * t)
 
 
-###### RK-4 method ######
 def rk4(f, t0, x0, h, n):
     """
-    The parameters of this RK4 method have been altered to reflect those in the Scheuren/Dillenburger papers.
+    Runge-Kutta 4th Order method for solving a differential equation. 
 
     :param f: The function to be analyzed with teh RK4 method.
     :param t0: Initial time for t in the form dx/dt. This corresponds to x in the form dy/dx.
     :param x0: Initial value of x in the form dx/dt. This corresponds to y in the form dy/dx.
     :param h: The time step for each iteration of the RK4 method.
     :param n: The total number of steps in the analysis.
-    :return: A dataframe object containing the values of t and x at each step of the RK4 analysis for the duration of n.
-    TODO pull the df part out of this and just return the dictionary. The df part should be a separate function.
+    :return: A dictionary with tn as each key and xn as the corresponding value.
+    :return: A list with the header names.
     """
     xn = x0
     data = {t0: xn}
@@ -101,8 +100,7 @@ def rk4(f, t0, x0, h, n):
         data[tn] = xn
         xn = xn + k
 
-    df = pd.DataFrame(data.items(), columns=headers)
-    return df
+    return data, headers
 
 
 if __name__ == "__main__":
@@ -128,10 +126,11 @@ if __name__ == "__main__":
     # Number of Steps = 3600 (3600 seconds is 1 hr)
 
     ##### RK4 method call f4 ######
-    data = rk4(eqn_13, t0, x0, h, steps)
-    print("\nRK4 DataFrame: \n", data)
-    t = data["tn"]
-    x = data["xn"]
+    data, headers = rk4(eqn_13, t0, x0, h, steps)
+    df = pd.DataFrame(data.items(), columns=headers)
+    print("\nRK4 DataFrame: \n", df)
+    t = df["tn"]
+    x = df["xn"]
 
     ###### RK4 method call example function ######
     # data = rk4(f_example, t0, x0, h, steps)
