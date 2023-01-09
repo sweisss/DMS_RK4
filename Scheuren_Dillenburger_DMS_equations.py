@@ -61,6 +61,9 @@ def eqn_13(t, x_i):
     :param x_i: Dimethyl sulphide content
     :param t: time
     :return: The change in DMS content dependent on a process time
+
+    NOTE: Using all Dillenburger constants yeilds a boil time of 30 minutes (1760ish seconds) to reach 100 ug/l of DMS
+    NOTE: Using constants from Scheurn's Excel where available yeilds a boil time of 43 minutes (2590 seconds)
     """
     # Steam flow in L/s
     D_dot = 1.1     # From Dillenburger (2017)
