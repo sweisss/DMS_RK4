@@ -8,9 +8,7 @@ https://www.geeksforgeeks.org/runge-kutta-4th-order-method-solve-differential-eq
 This program also used the code from the following link as a starting point:
 https://www.codesansar.com/numerical-methods/runge-kutta-fourth-order-rk4-python-program.htm
 """
-from cmath import exp
 import math
-import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
@@ -66,14 +64,20 @@ def eqn_13(t, x_i):
     """
     # Steam flow in L/s
     D_dot = 1.1     # From Dillenburger (2017)
+
     # Initial wort volume (boil start)
     L_0 = 73200     # From Dillenburger (2017)
+
     # Volatility
-    K_i = 78        # From Dillenburger (2017) (was 76 before refactor)
+    K_i = 78        # From Dillenburger (2017) (was 76 before refactor, not sure where 76 came from)
+
     # Rate constant
-    k = 0.00130809768004509     # From Scheuren's Excel
+    # k = 0.00130809768004509     # From Scheuren's Excel
+    k = 0.00025     # From Dillenburger (2017)
+    
     # Dimethyl sulphide precursor (DMSP) in micrograms/L
-    c_i0 = 500      # From Scheuren's Excel
+    # c_i0 = 500      # From Scheuren's Excel
+    c_i0 = 227      # From Dillenburger (2017)
 
     return -(D_dot/L_0) * (K_i * x_i - x_i - c_i0) + k * c_i0 * math.exp(-k * t)
 
