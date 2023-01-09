@@ -126,19 +126,32 @@ if __name__ == "__main__":
     # Number of Steps = 3600 (3600 seconds is 1 hr)
 
     ##### RK4 method call f4 ######
-    data, headers = rk4(eqn_13, t0, x0, h, steps)
+    # data, headers = rk4(eqn_13, t0, x0, h, steps)
+    # df = pd.DataFrame(data.items(), columns=headers)
+    # print("\nRK4 DataFrame: \n", df)
+    # t = df["tn"]
+    # x = df["xn"]
+
+    ###### plot the data #####
+    # plt.axhline(y=100, color='red')
+    # plt.plot(t, x)
+    # plt.xlabel("t (in seconds)")
+    # plt.ylabel("DMS Content (x) in ug/l")
+    # plt.show()
+
+
+    ###### RK4 method call example function ######
+    ###### This is used to test/confirm that the RK4 method works correctly ######
+    t0 = 0
+    x0 = 2
+    h = 0.1
+    steps = 20
+    data, headers = rk4(f_example, t0, x0, h, steps)
     df = pd.DataFrame(data.items(), columns=headers)
     print("\nRK4 DataFrame: \n", df)
     t = df["tn"]
     x = df["xn"]
 
-    ###### RK4 method call example function ######
-    # data = rk4(f_example, t0, x0, h, steps)
-    # t = data["tn"]
-    # x = data["xn"]
-
-    ###### plot the data #####
-    plt.axhline(y=100, color='red')
     plt.plot(t, x)
     plt.xlabel("t (in seconds)")
     plt.ylabel("DMS Content (x) in ug/l")
