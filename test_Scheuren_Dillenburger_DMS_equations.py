@@ -1,7 +1,7 @@
 import Scheuren_Dillenburger_DMS_equations as dms
 import unittest
 
-class DMSRK4TestCase(unittest.TestCase):
+class DMS_RK4TestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         return super().setUp()
@@ -70,7 +70,6 @@ class DMSRK4TestCase(unittest.TestCase):
             4.506210021668004
         ]
         self.assertEqual(c_i, expected)
-
 
 
 if __name__ == '__main__':

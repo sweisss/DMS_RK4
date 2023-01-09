@@ -64,11 +64,16 @@ def eqn_13(t, x_i):
     :param t: time
     :return: The change in DMS content dependent on a process time
     """
-    D_dot = 1.1     # Steam flow in L/s
-    L_0 = 73200     # Initial wort volume (boil start)
-    K_i = 76        # Volatility
-    k = 0.00130809768004509     # Rate constant
-    c_i0 = 500      # Dimethyl sulphide precursor (DMSP) in micrograms/L
+    # Steam flow in L/s
+    D_dot = 1.1     # From Dillenburger (2017)
+    # Initial wort volume (boil start)
+    L_0 = 73200     # From Dillenburger (2017)
+    # Volatility
+    K_i = 78        # From Dillenburger (2017) (was 76 before refactor)
+    # Rate constant
+    k = 0.00130809768004509     # From Scheuren's Excel
+    # Dimethyl sulphide precursor (DMSP) in micrograms/L
+    c_i0 = 500      # From Scheuren's Excel
 
     return -(D_dot/L_0) * (K_i * x_i - x_i - c_i0) + k * c_i0 * math.exp(-k * t)
 
@@ -105,7 +110,6 @@ def rk4(f, t0, x0, h, n):
 
 if __name__ == "__main__":
 
-
     # For eqn 1
     c_i_0 = 500    # From Scheuren's Excel 
     k = 0.00130809768004509     # From Scheuren's Excel
@@ -139,7 +143,6 @@ if __name__ == "__main__":
     plt.xlabel("t (in seconds)")
     plt.ylabel("DMS Content (x) in ug/l")
     plt.show()
-
 
     ###### RK4 method call example function ######
     ###### This is used to test/confirm that the RK4 method works correctly ######
