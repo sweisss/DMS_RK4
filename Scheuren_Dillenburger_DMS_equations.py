@@ -97,7 +97,7 @@ def rk4(f, t0, x0, h, n):
         k3 = h * (f((tn + h / 2), (xn + k2 / 2)))
         k4 = h * (f((tn + h), (xn + k3)))
         k = (k1 + 2 * k2 + 2 * k3 + k4) / 6
-        data[tn] = xn
+        data[round(tn, 2)] = xn
         xn = xn + k
 
     return data, headers
@@ -147,6 +147,8 @@ if __name__ == "__main__":
     h = 0.1
     steps = 20
     data, headers = rk4(f_example, t0, x0, h, steps)
+    print("data:\n", data)
+    print("headers:\n", headers)
     df = pd.DataFrame(data.items(), columns=headers)
     print("\nRK4 DataFrame: \n", df)
     t = df["tn"]
