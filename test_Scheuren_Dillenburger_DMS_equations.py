@@ -49,6 +49,28 @@ class DMSRK4TestCase(unittest.TestCase):
         self.assertEqual(data, expected_data)
         self.assertEqual(headers, expected_headers)
 
+    
+    def test_eqn_1(self):
+        c_i_0 = 500    # From Scheuren's Excel 
+        k = 0.00130809768004509     # From Scheuren's Excel
+        c_i = dms.eqn_1(c_i_0, k, 60, 5)
+        expected = [
+            500.0,
+            337.7070468652124,
+            228.09209900484552,
+            154.05661833642804,
+            104.05201125687249,
+            70.27819488388847,
+            47.466883306511725,
+            32.059801970675444,
+            21.65364209320064,
+            14.625175050342087,
+            9.878049352275617,
+            6.671773751091645,
+            4.506210021668004
+        ]
+        self.assertEqual(c_i, expected)
+
 
 
 if __name__ == '__main__':
