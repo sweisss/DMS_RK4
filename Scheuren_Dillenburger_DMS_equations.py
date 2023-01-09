@@ -42,12 +42,15 @@ def eqn_1(c_i_0, k, t, step):
     
 
 # Equation 4 Dillenburger (2017)
-def eqn_4(t, x_i):
+def eqn_13(t, x_i):
     """
+    Equation 13 from Scheuren (2014) Thermodynamic Validation of Wort Boiling Systems.
+
     Equation 4 from Dillenburger (2017) calculates 'the boiling of wort in a kettle through direct
     heating of tank walls in terms of the evaporation of DMS in water and teh simultaneous reproduction
     of DMSP'
-    Local variables go against python convention to keep them consistent with the equation in the paper.
+    
+    Local variables go against python convention to keep them consistent with the variables used in the papers.
     :param x_i: Dimethyl sulphide content
     :param t:   time
     :return:    The change in DMS content dependent on a process time
@@ -115,7 +118,7 @@ if __name__ == "__main__":
     # Number of Steps = 3600 (3600 seconds is 1 hr)
 
     ##### RK4 method call f4 ######
-    data = rk4(eqn_4, t0, x0, h, steps)
+    data = rk4(eqn_13, t0, x0, h, steps)
     print("\nRK4 DataFrame: \n", data)
     t = data["tn"]
     x = data["xn"]
