@@ -64,9 +64,9 @@ def eqn_13(t, x_i):
 
     NOTE: If using Dillenburger values, make sure to alter the x0 input for the RK4 Method (see belowe)
     Notes on results:
-    - Using all Dillenburger constants and x0 = 500 yeilds a boil time of 30 minutes (1760ish seconds) to reach 100 ug/l of DMS
-    - Using all Dillenburger constants and x0 = 273 yeilds a boil time of 20 minutes (1209ish seconds) to reach 100 ug/l of DMS
-    - Using constants from Scheurn's Excel where available and x0 = 500 yeilds a boil time of 43 minutes (2590 seconds)
+    - Using all Dillenburger constants and x0 = 500 yields a boil time of 30 minutes (1760ish seconds) to reach 100 ug/l of DMS
+    - Using all Dillenburger constants and x0 = 273 yields a boil time of 20 minutes (1209ish seconds) to reach 100 ug/l of DMS
+    - Using constants from Scheuren's Excel where available and x0 = 500 yields a boil time of 43 minutes (2590 seconds)
     """
     # Steam flow in L/s
     D_dot = 1.1     # From Dillenburger (2017)
@@ -133,7 +133,7 @@ if __name__ == "__main__":
     h = 1
     steps = 3600
 
-    # NOTE: When modeling eqn 4, input the following:
+    # NOTE: When modeling eqn 4 from Dillenburger (2017), input the following:
     # NOTE: The following inputs came from an interpretation of the 2017 Dillenburger paper.
     # t0 = 0  # (Start time)
     # x0 = 273    # (DMS content)
