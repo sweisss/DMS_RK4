@@ -73,5 +73,11 @@ class DMS_RK4TestCase(unittest.TestCase):
         self.assertEqual(c_i, expected)
 
 
+    # def test_eqn_4_exists(self):
+    #     if hasattr(dms, 'eqn_4'):
+    #         return lambda func: func
+    #     return unittest.skip("{!r} doesn't have {!r}".format(dms, 'eqn_4'))
+
+
 if __name__ == '__main__':
     unittest.main()

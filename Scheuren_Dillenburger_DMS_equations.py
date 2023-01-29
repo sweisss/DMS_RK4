@@ -44,10 +44,21 @@ def eqn_1(c_i_0, k, t, step):
     """
     c_i = []
     for i in range(0, t + step, step):
-        c_i.append(c_i_0 * math.exp(-k * 60 * i))
+        # c_i.append(c_i_0 * math.exp(-k * 60 * i))
+        c_i.append(c_i_0 * 2.71**(-k * 60 * i))
     
     return c_i
     
+
+def eqn_4():
+    """
+    Equation 4 from Scheuren (2014) Thermodynamic Validation of Wort Boiling Systems.
+
+    Equation models the evaporation of DMS from water kettle boiling without consideration of DMSP to DMS conversion.
+
+    (dx_i)/(dt) = (-D_dot * x_i * (K_i - 1)) / L
+    """
+    pass
 
 def eqn_13(t, x_i):
     """
@@ -78,12 +89,12 @@ def eqn_13(t, x_i):
     K_i = 78        # From Dillenburger (2017) (was 76 before refactor, not sure where 76 came from)
 
     # Rate constant
-    # k = 0.00130809768004509     # From Scheuren's Excel
-    k = 0.00025     # From Dillenburger (2017)
+    k = 0.00130809768004509     # From Scheuren's Excel
+    # k = 0.00025     # From Dillenburger (2017)
     
     # Dimethyl sulphide precursor (DMSP) in micrograms/L
-    # c_i0 = 500      # From Scheuren's Excel
-    c_i0 = 227      # From Dillenburger (2017)
+    c_i0 = 500      # From Scheuren's Excel
+    # c_i0 = 227      # From Dillenburger (2017)
 
     return -(D_dot/L_0) * (K_i * x_i - x_i - c_i0) + k * c_i0 * math.exp(-k * t)
 
