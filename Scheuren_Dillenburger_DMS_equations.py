@@ -44,8 +44,8 @@ def eqn_1(c_i_0, k, t, step):
     """
     c_i = []
     for i in range(0, t + step, step):
-        # c_i.append(c_i_0 * math.exp(-k * 60 * i))
-        c_i.append(c_i_0 * 2.71**(-k * 60 * i))
+        c_i.append(c_i_0 * math.exp(-k * 60 * i))
+        # c_i.append(c_i_0 * 2.71**(-k * 60 * i))   # NOTE: Using 2.71 instead of math.exp will cause unittest to fail.
     
     return c_i
     
