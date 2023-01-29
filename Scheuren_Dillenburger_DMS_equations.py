@@ -58,7 +58,7 @@ def eqn_4():
 
     (dx_i)/(dt) = (-D_dot * x_i * (K_i - 1)) / L
     """
-    pass
+    return 1
 
 def eqn_13(t, x_i):
     """
