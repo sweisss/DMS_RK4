@@ -50,6 +50,25 @@ def eqn_1(c_i_0, k, t, step):
     return c_i
     
 
+D = [
+    0,
+    0.005,
+    0.01,
+    0.015,
+    0.02,
+    0.025,
+    0.03,
+    0.035,
+    0.04,
+    0.045,
+    0.05,
+    0.055,
+    0.06,
+    0.065,
+    0.07,
+    0.075,
+]
+
 def eqn_4():
     """
     Equation 4 from Scheuren (2014) Thermodynamic Validation of Wort Boiling Systems.
@@ -57,8 +76,33 @@ def eqn_4():
     Equation models the evaporation of DMS from water kettle boiling without consideration of DMSP to DMS conversion.
 
     (dx_i)/(dt) = (-D_dot * x_i * (K_i - 1)) / L
+
+    :param x_i: DMS content
+    :param D_dot: Overall evaporation
+    :param K_i: Volatility or fugacity
+    :param L: Volume
+    :return: DMS content????
     """
-    return 1
+    # result = [
+    #     500,
+    #     343.3215466,
+    #     235.2933208,
+    #     160.9486327,
+    #     109.8817788,
+    #     74.87143927,
+    #     50.91550719,
+    #     34.55560533,
+    #     23.40520678,
+    #     15.82059719,
+    #     10.67186692,
+    #     7.183823317,
+    #     4.825685608,
+    #     3.234750732,
+    #     2.16367061,
+    #     1.444108951
+    # ]
+    result = 1
+    return result
 
 def eqn_13(t, x_i):
     """

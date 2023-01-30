@@ -73,8 +73,28 @@ class DMS_RK4TestCase(unittest.TestCase):
         self.assertEqual(c_i, expected)
 
 
+
     def test_eqn_4(self):
-       self.assertEqual(dms.eqn_4(), 1)
+        # expected = [
+        #     500,
+        #     343.3215466,
+        #     235.2933208,
+        #     160.9486327,
+        #     109.8817788,
+        #     74.87143927,
+        #     50.91550719,
+        #     34.55560533,
+        #     23.40520678,
+        #     15.82059719,
+        #     10.67186692,
+        #     7.183823317,
+        #     4.825685608,
+        #     3.234750732,
+        #     2.16367061,
+        #     1.444108951
+        # ]
+        expected = 1
+        self.assertEqual(dms.eqn_4(), expected)
 
 
 if __name__ == '__main__':
